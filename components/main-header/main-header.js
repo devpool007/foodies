@@ -4,6 +4,7 @@ import logoImg from "@/assets/logo.png";
 import classes from "./main-header.module.css";
 import MainHeaderBkg from "@/components/main-header/main-header-bkg";
 import NavLink from "./nav-link";
+import Silk from "../silk-bkg/silk";
 
 export default function MainHeader() {
   return (
@@ -21,7 +22,7 @@ export default function MainHeader() {
         <nav className={classes.nav}>
           <ul>
             <li>
-             <NavLink href="/meals">Browse Meals</NavLink>
+              <NavLink href="/meals">Browse Meals</NavLink>
             </li>
             <li>
               <NavLink href="/community">Community</NavLink>
