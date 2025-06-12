@@ -2,8 +2,21 @@ import { getMealBySlug } from "@/lib/meals";
 import classes from "./page.module.css";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({ params }) {
+  const meal = getMealBySlug(params.mealSlug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.description
+  }
+}
+
 export default function MealDetailsPage({ params }) {
-  
   const meal = getMealBySlug(params.mealSlug);
 
   if (!meal) {
@@ -11,12 +24,12 @@ export default function MealDetailsPage({ params }) {
   }
 
   meal.instructions = meal.instructions.replace(/\n/g, "<br />");
-  
+
   return (
     <>
       <header className={classes.header}>
         <div className={classes.image}>
-          <Image src={meal.image} alt={meal.title} fill />
+          <Image src={`https://devansharma-nextjs-fapp-users-image.s3.eu-north-1.amazonaws.com/${meal.image}`} alt={meal.title} fill />
         </div>
         <div className={classes.headerText}>
           <h1>{meal.title}</h1>
@@ -29,9 +42,13 @@ export default function MealDetailsPage({ params }) {
         </div>
       </header>
       <main className={classes.main}>
-        <p className={classes.instructions} dangerouslySetInnerHTML={{
-          __html: meal.instructions || "No instructions available for this meal."
-        }}></p>
+        <p
+          className={classes.instructions}
+          dangerouslySetInnerHTML={{
+            __html:
+              meal.instructions || "No instructions available for this meal.",
+          }}
+        ></p>
       </main>
     </>
   );
