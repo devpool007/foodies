@@ -4,7 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
-  const meal = getMealBySlug(params.mealSlug);
+  const meal = await getMealBySlug(params.mealSlug);
 
   if (!meal) {
     notFound();
@@ -16,8 +16,8 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function MealDetailsPage({ params }) {
-  const meal = getMealBySlug(params.mealSlug);
+export default async function MealDetailsPage({ params }) {
+  const meal = await getMealBySlug(params.mealSlug);
 
   if (!meal) {
     notFound();
