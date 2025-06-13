@@ -11,7 +11,6 @@ const pool = new Pool({
   },
 });
 
-// postgresql://foodies_6gcq_user:vRGl3J0wJt41uKDVE6Uc30VPFjuVWMuf@dpg-d163el24d50c73f15fcg-a.frankfurt-postgres.render.com/foodies_6gcq
 // CREATE TABLE meals (
 //   id SERIAL PRIMARY KEY,
 //   title TEXT NOT NULL,
